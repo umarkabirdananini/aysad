@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AYSAD ARENA - Coming Soon</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+overflow:hidden;
+background:linear-gradient(270deg,#020024,#090979,#00d4ff);
+background-size:600% 600%;
+animation:gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+.container{
+position:relative;
+z-index:2;
+padding:40px;
+max-width:800px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+border-radius:20px;
+box-shadow:0 0 40px rgba(0,255,255,0.2);
+}
+
+.logo{
+font-size:60px;
+font-weight:bold;
+letter-spacing:4px;
+color:#00ffd5;
+text-shadow:0 0 25px #00ffd5;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 20px #00ffd5;}
+to{ text-shadow:0 0 50px #00ffd5;}
+}
+
+.tagline{
+font-size:22px;
+margin-top:10px;
+margin-bottom:25px;
+}
+
+.features{
+font-size:18px;
+line-height:2;
+margin-bottom:35px;
+}
+
+.countdown{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.box{
+background:rgba(255,255,255,0.1);
+padding:15px 25px;
+border-radius:12px;
+min-width:90px;
+}
+
+.box span{
+display:block;
+font-size:35px;
+font-weight:bold;
+color:#00ffd5;
+}
+
+.footer{
+margin-top:35px;
+opacity:0.8;
+font-size:14px;
+}
+
+/* floating emojis */
+
+.emoji{
+position:absolute;
+font-size:32px;
+animation:float linear forwards;
+opacity:0.8;
+}
+
+@keyframes float{
+0%{
+transform:translateY(110vh) rotate(0deg);
+opacity:0;
+}
+10%{opacity:1;}
+100%{
+transform:translateY(-10vh) rotate(360deg);
+opacity:0;
+}
+}
+
+/* moving stadium lights */
+
+.light{
+position:absolute;
+width:400px;
+height:400px;
+background:radial-gradient(circle, rgba(0,255,255,0.25), transparent);
+animation:lightMove 8s linear infinite;
+}
+
+@keyframes lightMove{
+0%{transform:translate(-200px,-200px);}
+50%{transform:translate(200px,200px);}
+100%{transform:translate(-200px,-200px);}
+}
+
+/* fireworks */
+
+.firework{
+position:absolute;
+font-size:40px;
+animation:explode 1s forwards;
+}
+
+@keyframes explode{
+0%{transform:scale(0);}
+100%{transform:scale(2);opacity:0;}
+}
+
+button{
+margin-top:20px;
+padding:10px 20px;
+border:none;
+border-radius:8px;
+background:#00ffd5;
+color:#000;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#00c4a3;
+}
+
+@media(max-width:600px){
+
+.logo{
+font-size:40px;
+}
+
+.tagline{
+font-size:18px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="light"></div>
+
+<div class="container">
+
+<div class="logo">AYSAD ARENA</div>
+
+<div class="tagline">
+⚡ The Ultimate Destination for Sports, Fitness & Entertainment ⚡
+</div>
+
+<div class="features">
+⚽ Sports Arena<br>
+🏋️ Modern Gym & Fitness Center<br>
+🍔 Restaurant & Lounge<br>
+🎮 Entertainment & Recreation<br>
+🏆 Tournaments, Events & Much More
+</div>
+
+<div class="countdown">
+
+<div class="box">
+<span id="days">0</span>
+Days
+</div>
+
+<div class="box">
+<span id="hours">0</span>
+Hours
+</div>
+
+<div class="box">
+<span id="minutes">0</span>
+Minutes
+</div>
+
+<div class="box">
+<span id="seconds">0</span>
+Seconds
+</div>
+
+</div>
+
+<button onclick="toggleSound()">🔊 Toggle Stadium Sound</button>
+
+<div class="footer">
+AYSAD ARENA • GRAND OPENING COMING SOON
+</div>
+
+</div>
+
+<audio id="crowdSound" loop>
+<source src="https://assets.mixkit.co/active_storage/sfx/2073/2073-preview.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* countdown */
+
+const launchDate = new Date();
+launchDate.setDate(launchDate.getDate() + 20);
+
+function updateCountdown(){
+
+const now = new Date().getTime();
+const distance = launchDate - now;
+
+const days = Math.floor(distance/(1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+const seconds = Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("days").innerText = days;
+document.getElementById("hours").innerText = hours;
+document.getElementById("minutes").innerText = minutes;
+document.getElementById("seconds").innerText = seconds;
+
+if(distance < 0){
+document.querySelector(".countdown").innerHTML="🎉 WE ARE OPEN! 🎉";
+launchFireworks();
+}
+
+}
+
+setInterval(updateCountdown,1000);
+
+
+/* floating emojis */
+
+const emojis=["⚽","🏀","🏋️","🥊","🍔","🥗","🎮","🏆","🎾"];
+
+function createEmoji(){
+
+const emoji=document.createElement("div");
+emoji.classList.add("emoji");
+
+emoji.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+emoji.style.left=Math.random()*100+"vw";
+emoji.style.animationDuration=(6+Math.random()*6)+"s";
+
+document.body.appendChild(emoji);
+
+setTimeout(()=>{
+emoji.remove();
+},12000);
+
+}
+
+setInterval(createEmoji,500);
+
+
+/* fireworks */
+
+function launchFireworks(){
+
+setInterval(()=>{
+
+const fire=document.createElement("div");
+fire.classList.add("firework");
+fire.innerText="🎆";
+
+fire.style.left=Math.random()*100+"vw";
+fire.style.top=Math.random()*60+"vh";
+
+document.body.appendChild(fire);
+
+setTimeout(()=>{
+fire.remove();
+},1000);
+
+},300);
+
+}
+
+
+/* sound */
+
+const crowd=document.getElementById("crowdSound");
+
+function toggleSound(){
+
+if(crowd.paused){
+crowd.play();
+}else{
+crowd.pause();
+}
+
+}
+
+</script>
+
+</body>
+</html>
