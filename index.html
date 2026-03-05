@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>AYSAD ARENA - Coming Soon</title>
 
 <style>
@@ -38,44 +37,57 @@ animation:gradientMove 15s ease infinite;
 position:relative;
 z-index:2;
 padding:40px;
-max-width:800px;
-background:rgba(255,255,255,0.05);
+max-width:850px;
+background:rgba(255,255,255,0.06);
 backdrop-filter:blur(15px);
 border-radius:20px;
-box-shadow:0 0 40px rgba(0,255,255,0.2);
+box-shadow:0 0 40px rgba(0,255,255,0.25);
 }
 
-.logo{
-font-size:60px;
+/* LOGO */
+
+.logo-img{
+width:150px;
+margin-bottom:10px;
+animation:logoGlow 3s infinite alternate;
+}
+
+@keyframes logoGlow{
+from{filter:drop-shadow(0 0 10px #00ffd5);}
+to{filter:drop-shadow(0 0 30px #00ffd5);}
+}
+
+.logo-text{
+font-size:50px;
 font-weight:bold;
 letter-spacing:4px;
 color:#00ffd5;
-text-shadow:0 0 25px #00ffd5;
-animation:glow 2s infinite alternate;
+margin-bottom:10px;
 }
 
-@keyframes glow{
-from{ text-shadow:0 0 20px #00ffd5;}
-to{ text-shadow:0 0 50px #00ffd5;}
-}
+/* TAGLINE */
 
 .tagline{
 font-size:22px;
-margin-top:10px;
 margin-bottom:25px;
 }
+
+/* FEATURES */
 
 .features{
 font-size:18px;
 line-height:2;
-margin-bottom:35px;
+margin-bottom:30px;
 }
+
+/* COUNTDOWN */
 
 .countdown{
 display:flex;
 justify-content:center;
 gap:20px;
 flex-wrap:wrap;
+margin-bottom:30px;
 }
 
 .box{
@@ -92,13 +104,33 @@ font-weight:bold;
 color:#00ffd5;
 }
 
-.footer{
-margin-top:35px;
-opacity:0.8;
-font-size:14px;
+/* REGISTER BUTTON */
+
+.register-btn{
+display:inline-block;
+padding:14px 28px;
+font-size:18px;
+font-weight:bold;
+text-decoration:none;
+color:white;
+border-radius:50px;
+background:linear-gradient(45deg,#00ffd5,#00a8ff);
+box-shadow:0 0 20px #00ffd5;
+transition:0.3s;
 }
 
-/* floating emojis */
+.register-btn:hover{
+transform:scale(1.08);
+box-shadow:0 0 40px #00ffd5;
+}
+
+.footer{
+margin-top:30px;
+font-size:14px;
+opacity:0.8;
+}
+
+/* FLOATING EMOJIS */
 
 .emoji{
 position:absolute;
@@ -119,14 +151,14 @@ opacity:0;
 }
 }
 
-/* moving stadium lights */
+/* STADIUM LIGHT */
 
 .light{
 position:absolute;
-width:400px;
-height:400px;
-background:radial-gradient(circle, rgba(0,255,255,0.25), transparent);
-animation:lightMove 8s linear infinite;
+width:450px;
+height:450px;
+background:radial-gradient(circle, rgba(0,255,255,0.3), transparent);
+animation:lightMove 10s linear infinite;
 }
 
 @keyframes lightMove{
@@ -135,21 +167,10 @@ animation:lightMove 8s linear infinite;
 100%{transform:translate(-200px,-200px);}
 }
 
-/* fireworks */
-
-.firework{
-position:absolute;
-font-size:40px;
-animation:explode 1s forwards;
-}
-
-@keyframes explode{
-0%{transform:scale(0);}
-100%{transform:scale(2);opacity:0;}
-}
+/* SOUND BUTTON */
 
 button{
-margin-top:20px;
+margin-top:15px;
 padding:10px 20px;
 border:none;
 border-radius:8px;
@@ -165,8 +186,8 @@ background:#00c4a3;
 
 @media(max-width:600px){
 
-.logo{
-font-size:40px;
+.logo-text{
+font-size:35px;
 }
 
 .tagline{
@@ -184,18 +205,19 @@ font-size:18px;
 
 <div class="container">
 
-<div class="logo">AYSAD ARENA</div>
+<img class="logo-img" src="https://export-download.canva.com/OWPAk/DAHDBkOWPAk/5/0/0001-8394079719738103501.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260304%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260304T141600Z&X-Amz-Expires=42850&X-Amz-Signature=3c8b4363f9feeef9b61b3ef88a6b01d166ebbf08d242b4ea894edc0c18ac63a8&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27Aysad%2520Sport%2520Arena%2520Logo.png&response-expires=Thu%2C%2005%20Mar%202026%2002%3A10%3A10%20GMT" alt="AYSAD Arena Logo">
+<div class="logo-text">AYSAD ARENA</div>
 
 <div class="tagline">
-⚡ The Ultimate Destination for Sports, Fitness & Entertainment ⚡
+⚡ Sports • Gym • Restaurant • Entertainment ⚡
 </div>
 
 <div class="features">
 ⚽ Sports Arena<br>
-🏋️ Modern Gym & Fitness Center<br>
+🏋️ Gym & Fitness Center<br>
 🍔 Restaurant & Lounge<br>
-🎮 Entertainment & Recreation<br>
-🏆 Tournaments, Events & Much More
+🎮 Entertainment Zone<br>
+🏆 Major Tournaments Coming Soon
 </div>
 
 <div class="countdown">
@@ -222,10 +244,16 @@ Seconds
 
 </div>
 
+<a class="register-btn" href="https://forms.gle/kmah1uT1bodJSqa8A" target="_blank">
+🏆 Register for Tournament
+</a>
+
+<br>
+
 <button onclick="toggleSound()">🔊 Toggle Stadium Sound</button>
 
 <div class="footer">
-AYSAD ARENA • GRAND OPENING COMING SOON
+AYSAD ARENA • GRAND OPENING IN 7 DAYS
 </div>
 
 </div>
@@ -236,39 +264,33 @@ AYSAD ARENA • GRAND OPENING COMING SOON
 
 <script>
 
-/* countdown */
+/* COUNTDOWN 7 DAYS */
 
 const launchDate = new Date();
-launchDate.setDate(launchDate.getDate() + 20);
+launchDate.setDate(launchDate.getDate() + 7);
 
 function updateCountdown(){
 
 const now = new Date().getTime();
 const distance = launchDate - now;
 
-const days = Math.floor(distance/(100*60*60*24));
-const hours = Math.floor((distance%(100*60*60*24))/(1000*60*60));
-const minutes = Math.floor((distance%(100*60*60))/(1000*60));
-const seconds = Math.floor((distance%(100*60))/1000);
+const days = Math.floor(distance/(1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+const seconds = Math.floor((distance%(1000*60))/1000);
 
 document.getElementById("days").innerText = days;
 document.getElementById("hours").innerText = hours;
 document.getElementById("minutes").innerText = minutes;
 document.getElementById("seconds").innerText = seconds;
 
-if(distance < 0){
-document.querySelector(".countdown").innerHTML="🎉 WE ARE OPEN! 🎉";
-launchFireworks();
-}
-
 }
 
 setInterval(updateCountdown,1000);
 
+/* FLOATING SPORTS EMOJIS */
 
-/* floating emojis */
-
-const emojis=["⚽","🏀","🏋️","🥊","🍔","🥗","🎮","🏆","🎾"];
+const emojis=["⚽","🏀","🏋️","🥊","🍔","🎮","🏆","🎾"];
 
 function createEmoji(){
 
@@ -289,32 +311,7 @@ emoji.remove();
 
 setInterval(createEmoji,500);
 
-
-/* fireworks */
-
-function launchFireworks(){
-
-setInterval(()=>{
-
-const fire=document.createElement("div");
-fire.classList.add("firework");
-fire.innerText="🎆";
-
-fire.style.left=Math.random()*100+"vw";
-fire.style.top=Math.random()*60+"vh";
-
-document.body.appendChild(fire);
-
-setTimeout(()=>{
-fire.remove();
-},1000);
-
-},300);
-
-}
-
-
-/* sound */
+/* SOUND CONTROL */
 
 const crowd=document.getElementById("crowdSound");
 
