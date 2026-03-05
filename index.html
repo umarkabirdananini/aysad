@@ -231,7 +231,7 @@ AYSAD ARENA • GRAND OPENING COMING SOON
 </div>
 
 <audio id="crowdSound" loop>
-<source src="https://assets.mixkit.co/active_storage/sfx/2073/2073-preview.mp3" type="audio/mpeg">
+<source src="https://cdn.pixabay.com/download/audio/2025/11/12/audio_48b7925981.mp3?filename=vishiv-crowd-cheering-in-stadium-435357.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -246,10 +246,10 @@ function updateCountdown(){
 const now = new Date().getTime();
 const distance = launchDate - now;
 
-const days = Math.floor(distance/(1000*60*60*24));
-const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-const seconds = Math.floor((distance%(1000*60))/1000);
+const days = Math.floor(distance/(100*60*60*24));
+const hours = Math.floor((distance%(100*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(100*60*60))/(1000*60));
+const seconds = Math.floor((distance%(100*60))/1000);
 
 document.getElementById("days").innerText = days;
 document.getElementById("hours").innerText = hours;
