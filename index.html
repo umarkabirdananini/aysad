@@ -15,13 +15,14 @@ font-family:Segoe UI, sans-serif;
 }
 
 body{
-height:100vh;
+min-height:100vh;
 display:flex;
 justify-content:center;
-align-items:center;
+align-items:flex-start;
+padding-top:70px;
 color:white;
 text-align:center;
-overflow:hidden;
+overflow-x:hidden;
 background:linear-gradient(270deg,#020024,#090979,#00d4ff);
 background-size:600% 600%;
 animation:gradientMove 15s ease infinite;
@@ -44,11 +45,57 @@ border-radius:20px;
 box-shadow:0 0 40px rgba(0,255,255,0.25);
 }
 
+/* LOGO AREA */
+
+.logo-wrapper{
+position:relative;
+display:inline-block;
+margin-bottom:10px;
+}
+
+/* HALO */
+
+.logo-wrapper::before{
+content:"";
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:230px;
+height:230px;
+border-radius:50%;
+background:radial-gradient(circle, rgba(0,255,213,0.5), transparent 70%);
+filter:blur(15px);
+z-index:-1;
+}
+
+/* ROTATING LIGHT RING */
+
+.logo-wrapper::after{
+content:"";
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:260px;
+height:260px;
+border-radius:50%;
+border:2px dashed rgba(0,255,213,0.4);
+animation:spin 12s linear infinite;
+z-index:-1;
+}
+
+@keyframes spin{
+from{transform:translate(-50%,-50%) rotate(0deg);}
+to{transform:translate(-50%,-50%) rotate(360deg);}
+}
+
 /* LOGO */
 
 .logo-img{
-width:150px;
-margin-bottom:10px;
+width:170px;
+margin-top:10px;
+margin-bottom:15px;
 animation:logoGlow 3s infinite alternate;
 }
 
@@ -167,8 +214,6 @@ animation:lightMove 10s linear infinite;
 100%{transform:translate(-200px,-200px);}
 }
 
-/* SOUND BUTTON */
-
 button{
 margin-top:15px;
 padding:10px 20px;
@@ -205,7 +250,10 @@ font-size:18px;
 
 <div class="container">
 
-<img class="logo-img" src="https://export-download.canva.com/OWPAk/DAHDBkOWPAk/5/0/0001-8394079719738103501.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260304%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260304T141600Z&X-Amz-Expires=42850&X-Amz-Signature=3c8b4363f9feeef9b61b3ef88a6b01d166ebbf08d242b4ea894edc0c18ac63a8&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27Aysad%2520Sport%2520Arena%2520Logo.png&response-expires=Thu%2C%2005%20Mar%202026%2002%3A10%3A10%20GMT" alt="AYSAD Arena Logo">
+<div class="logo-wrapper">
+<img class="logo-img" src="https://export-download.canva.com/OWPAk/DAHDBkOWPAk/5/0/0001-8394079719738103501.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260304%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260304T141600Z&X-Amz-Expires=42850&X-Amz-Signature=3c8b4363f9feeef9b61b3ef88a6b01d166ebbf08d242b4ea894edc0c18ac63a8&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27Aysad%2520Sport%2520Arena%2520Logo.png&response-expires=Thu%2C%2005%20Mar%202026%2002%3A10%3A10%20GMT">
+</div>
+
 <div class="logo-text">AYSAD ARENA</div>
 
 <div class="tagline">
@@ -222,25 +270,10 @@ font-size:18px;
 
 <div class="countdown">
 
-<div class="box">
-<span id="days">0</span>
-Days
-</div>
-
-<div class="box">
-<span id="hours">0</span>
-Hours
-</div>
-
-<div class="box">
-<span id="minutes">0</span>
-Minutes
-</div>
-
-<div class="box">
-<span id="seconds">0</span>
-Seconds
-</div>
+<div class="box"><span id="days">0</span>Days</div>
+<div class="box"><span id="hours">0</span>Hours</div>
+<div class="box"><span id="minutes">0</span>Minutes</div>
+<div class="box"><span id="seconds">0</span>Seconds</div>
 
 </div>
 
@@ -259,12 +292,10 @@ AYSAD ARENA • GRAND OPENING IN 7 DAYS
 </div>
 
 <audio id="crowdSound" loop>
-<source src="https://cdn.pixabay.com/download/audio/2025/11/12/audio_48b7925981.mp3?filename=vishiv-crowd-cheering-in-stadium-435357.mp3" type="audio/mpeg">
+<source src="https://cdn.pixabay.com/download/audio/2025/11/12/audio_48b7925981.mp3?filename=vishiv-crowd-cheering-in-stadium-435357.mp3">
 </audio>
 
 <script>
-
-/* COUNTDOWN 7 DAYS */
 
 const launchDate = new Date();
 launchDate.setDate(launchDate.getDate() + 7);
@@ -288,8 +319,6 @@ document.getElementById("seconds").innerText = seconds;
 
 setInterval(updateCountdown,1000);
 
-/* FLOATING SPORTS EMOJIS */
-
 const emojis=["⚽","🏀","🏋️","🥊","🍔","🎮","🏆","🎾"];
 
 function createEmoji(){
@@ -303,26 +332,17 @@ emoji.style.animationDuration=(6+Math.random()*6)+"s";
 
 document.body.appendChild(emoji);
 
-setTimeout(()=>{
-emoji.remove();
-},12000);
+setTimeout(()=>{emoji.remove();},12000);
 
 }
 
 setInterval(createEmoji,500);
 
-/* SOUND CONTROL */
-
 const crowd=document.getElementById("crowdSound");
 
 function toggleSound(){
-
-if(crowd.paused){
-crowd.play();
-}else{
-crowd.pause();
-}
-
+if(crowd.paused){crowd.play();}
+else{crowd.pause();}
 }
 
 </script>
